@@ -5,12 +5,43 @@
 <head>
 <meta charset="UTF-8">
 <title>/home.jsp</title>
+
+<!-- 맨 위로가기 버튼 위치 설정 -->
+<style>
+	a#MOVE_TOP_BTN {
+	    position: fixed;
+	    right: 2%;
+	    bottom: 50px;
+	    display: none;
+	    z-index: 999;
+	}
+</style>
+
 <jsp:include page="include/resource.jsp"></jsp:include>
 </head>
 <body>
 <jsp:include page="include/navbar.jsp"></jsp:include>
 <div class="container">
 	<h1>인덱스 페이지 입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
+	<h1>맨 위로 가기 버튼 테스트용 h1 요소입니다.</h1>
 	<ul>
 		<li><a href="users/signup_form.do">회원가입</a></li>
 		<li><a href="cafe/private/insertform.do">카페 글쓰러 가기</a></li>
@@ -18,8 +49,12 @@
 	</ul>
 </div>
 
-<script>
+	<!-- 맨 위로 가기 버튼 링크 생성, 이미지의 크기와 이미지가 존재하는 경로 설정 -->	
+	<a id="MOVE_TOP_BTN" href="#"><img style="width:60px;height:60px" 
+					src="${pageContext.request.contextPath }/resources/images/btn_top.png"/>
+	</a>
 
+<script>
 	//팝업을 중앙에 띄우는 함수 
 	function showPopup2(){
 		PopupCenter("${pageContext.request.contextPath }/popup/popup_page2.jsp","팝업창", 800, 500);
@@ -63,7 +98,30 @@
 	<%if(canPopup){%>
 		showPopup2();	
 	<%}%>
-	
+</script>
+
+<!-- 
+	맨 위로 가기 버튼이 부드럽게 동작하기 위한 설정
+	스크롤 위치에 따라 화면에서 맨위로 올라가는 버튼이 나타나고, 사라지도록하고
+	animation을 걸어서 화면 맨위로 이동하도록 설정
+ -->
+<script>
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 500) {
+                $('#MOVE_TOP_BTN').fadeIn();
+            } else {
+                $('#MOVE_TOP_BTN').fadeOut();
+            }
+        });
+         
+        $("#MOVE_TOP_BTN").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
 </script>
 
 </body>
