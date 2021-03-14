@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>/users/info.jsp</title>
 <jsp:include page="../../include/resource.jsp"></jsp:include>
+<jsp:include page="../../include/blogbasic.jsp"></jsp:include>
 <style>
 	/* 프로필 이미지를 작은 원형으로 만든다 */
 	#profileImage{
@@ -15,12 +16,13 @@
 		border: 1px solid #cecece;
 		border-radius: 50%;
 	}
+	#con{
+		margin-top:5rem;
+	}
 </style>
 </head>
 <body>
-<jsp:include page="../../include/navbar.jsp"></jsp:include>
-<div class="container">
-	<h1>가입 정보 입니다.</h1>
+<div class="container" id="con">
 	<table class="table table-striped">
 		<colgroup >
 			<col width="150"/>
@@ -48,7 +50,7 @@
 		</tr>
 		<tr>
 			<th>비밀번호</th>
-			<td><a href="pwd_updateform.do">수정하기</a></td>
+			<td><a style="color:#5991A8"; href="pwd_updateform.do">수정하기</a></td>
 		</tr>
 		<tr>
 			<th>이메일</th>
@@ -59,8 +61,14 @@
 			<td>${dto.regdate}</td>
 		</tr>
 	</table>
-	<a href="updateform.do">개인 정보 수정</a>
-	<a href="javascript:deleteConfirm()">탈퇴</a>
+	<div class="form-inline mb-5 justify-content-start">	
+		<a href="updateform.do">
+			<button class="btn btn-success btn-xs" >수정</button>
+		</a>
+		<a href="javascript:deleteConfirm()">
+			<button class="btn btn-danger btn-xs ml-1" >탈퇴</button>
+		</a>
+	</div>
 </div>
 <script>
 	function deleteConfirm(){
@@ -71,4 +79,5 @@
 	}
 </script>
 </body>
+<jsp:include page="../../include/blogfooter.jsp"></jsp:include>
 </html>

@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>/users/private/updateform.jsp</title>
 <jsp:include page="../../include/resource.jsp"></jsp:include>
+<jsp:include page="../../include/blogbasic.jsp"></jsp:include>
 <style>
 	/* 프로필 이미지를 작은 원형으로 만든다 */
 	#profileImage{
@@ -19,11 +20,16 @@
 	#profileForm{
 		display: none;
 	}
+	#con{
+		margin-top:5rem;
+	}
+	.form-group{
+		width:20rem;
+	}
 </style>
 </head>
 <body>
-<div class="container">
-	<h1>가입정보 수정 폼 입니다.</h1>
+<div class="container" id="con">
 	<a id="profileLink" href="javascript:">
 		<c:choose>
 			<c:when test="${empty dto.profile }">
@@ -38,16 +44,18 @@
 		</c:choose>
 	</a>
 	<form action="update.do" method="post">
-		<div>
+		<div class="form-group">
 			<label for="id">아이디</label>
 			<input type="text" id="id" value="${sessionScope.id }" disabled/>
 		</div>
-		<div>
+		<div class="form-group">
 			<label for="email">이메일</label>
 			<input type="text" id="email" name="email" value="${dto.email }"/>
 		</div>
-		<button type="submit">수정확인</button>
-		<button type="reset">취소</button>
+		<div class="form-inline mb-5 justify-content-start">		
+			<button class="btn btn-success btn-xs" type="submit">수정</button>
+			<button class="btn btn-warning btn-xs ml-1" type="reset">취소</button>
+		</div>
 	</form>
 	<form action="profile_upload.do" method="post" 
 		enctype="multipart/form-data" id="profileForm">
@@ -69,4 +77,5 @@
 	});
 </script>
 </body>
+<jsp:include page="../../include/blogfooter.jsp"></jsp:include>
 </html>

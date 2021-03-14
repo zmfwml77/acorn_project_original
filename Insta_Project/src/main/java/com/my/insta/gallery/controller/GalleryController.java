@@ -17,11 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.my.insta.gallery.dto.GalleryDto;
 import com.my.insta.gallery.service.GalleryService;
+import com.my.insta.users.service.UsersService;
 
 @Controller
 public class GalleryController {
 	@Autowired
 	private GalleryService service;
+
 	
 	@RequestMapping("/main/gallery/list.do")
 	public ModelAndView list(ModelAndView mView, HttpServletRequest request) {

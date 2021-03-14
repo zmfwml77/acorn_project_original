@@ -20,9 +20,9 @@ public class FileServiceImpl implements FileService{
 	private FileDao fileDao;
 	
 	//한 페이지에 나타낼 row 의 갯수
-	final int PAGE_ROW_COUNT=5;
+	final int PAGE_ROW_COUNT=3;
 	//하단 디스플레이 페이지 갯수
-	final int PAGE_DISPLAY_COUNT=5;
+	final int PAGE_DISPLAY_COUNT=3;
 	
 	@Override
 	public void getList(HttpServletRequest request) {
@@ -94,6 +94,7 @@ public class FileServiceImpl implements FileService{
 		request.setAttribute("condition", condition);
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("encodedK", encodedK);		
+		request.setAttribute("totalRow", totalRow);		
 	}
 
 	@Override

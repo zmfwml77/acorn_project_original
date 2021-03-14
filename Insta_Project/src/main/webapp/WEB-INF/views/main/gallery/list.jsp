@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>/gallery/list.jsp</title>
 <jsp:include page="../../include/resource.jsp"></jsp:include>
+<jsp:include page="../../include/blogbasic2.jsp"></jsp:include>
 <!-- 
 	jquery 플러그인 imgLiquid.js 로딩하기
 	- 반드시 jquery.js 가 먼저 로딩이 되어 있어야지만 동작한다.
@@ -149,20 +150,24 @@
 		display: none; /* 일단 숨겨 놓기 */
 	}	
 	
-	
+	#con{
+		margin-top:10rem;
+	}
+	a#MOVE_TOP_BTN {
+	    position: fixed;
+	    right: 2%;
+	    bottom: 50px;
+	    display: none;
+	    z-index: 999;
+	}
 </style>
 </head>
 <body>
-<jsp:include page="../../include/navbar.jsp">
-	<jsp:param value="gallery" name="thisPage"/>
-</jsp:include>
-<div class="container">
-	<a href="private/upload_form.do">사진 업로드 하러 가기</a><br/>
-	<a href="private/ajax_form.do">사진 업로드 하러 가기2</a>
-	<h1>겔러리 목록 입니다.</h1>
+
+<div class="container" id="con">
 	<div class="row" id="galleryList">
 		<c:forEach var="tmp" items="${list }">
-			<div class="col-6">
+			<div class="col-6 col-md-4 col-lg-3">
 				<div class="card mb-3">
 					<a href="comment.do?num=${tmp.num }">
 						<div class="img-wrapper">
@@ -170,18 +175,46 @@
 						</div>
 					</a>
 					<div class="card-body">
+						
 						<p class="card-text">${tmp.caption }</p>
 						<p class="card-text">by <strong>${tmp.writer }</strong></p>
 						<p><small>${tmp.regdate }</small></p>
 					</div>
 				</div>
-				<a href="comment.do?num=${tmp.num}">댓글</a>
 			</div>
 		</c:forEach>
 	</div>	
 </div>
+ <!-- 맨 위로 가기 버튼 링크 생성, 이미지의 크기와 이미지가 존재하는 경로 설정 -->   
+   <a id="MOVE_TOP_BTN" href="#"><img style="width:60px;height:60px" 
+               src="${pageContext.request.contextPath }/resources/images/main_up.png"/>
+   </a>
+<!-- 
+   맨 위로 가기 버튼이 부드럽게 동작하기 위한 설정
+   스크롤 위치에 따라 화면에서 맨위로 올라가는 버튼이 나타나고, 사라지도록하고
+   animation을 걸어서 화면 맨위로 이동하도록 설정
+ -->
+<div class="back-drop">
+	<img src="${pageContext.request.contextPath }/svg/spinner-solid.svg"/>
+</div>
 <script src="${pageContext.request.contextPath }/resources/js/jquery.form.min.js"></script>
 <script>
+	$(function() {
+	    $(window).scroll(function() {
+	        if ($(this).scrollTop() > 50) {
+	            $('#MOVE_TOP_BTN').fadeIn();
+	        } else {
+	            $('#MOVE_TOP_BTN').fadeOut();
+	        }
+	    });
+	     
+	    $("#MOVE_TOP_BTN").click(function() {
+	        $('html, body').animate({
+	            scrollTop : 0
+	        }, 400);
+	        return false;
+	    });
+	});
 	//댓글 스크립트
 	
 	// card 이미지의 부모 요소를 선택해서 imgLiquid  동작(jquery plugin 동작) 하기 
@@ -237,9 +270,8 @@
 			
 		}
 	});
-	
-	
 </script>
 </body>
+<jsp:include page="../../include/blogfooter.jsp"></jsp:include>
 </html>
 
