@@ -108,7 +108,7 @@
 <script>
     $(function() {
         $(window).scroll(function() {
-            if ($(this).scrollTop() > 500) {
+            if ($(this).scrollTop() > 50) {
                 $('#MOVE_TOP_BTN').fadeIn();
             } else {
                 $('#MOVE_TOP_BTN').fadeOut();
